@@ -38,16 +38,16 @@ class SellerController extends Controller
         ]);
         if ($validator->fails()) {
             $response['response'] = $validator->messages();
-        }else{
-            $order = Order::find($id);
-            $order->update([
-                'delivery_date' => $request->delivery_date,
-                'preparation_date' => $request->preparation_date
-            ]);
-
-            $response['response'] = 'Success';
+            return response()->json(['message' => 'error', 'response' => $validator->messages()], 304);
         }
-        return $response;
+
+        $order                = Order::find($id);
+        $order->update([
+            'delivery_date' => $request->delivery_date,
+            'preparation_date' => $request->preparation_date
+        ]);
+
+        return response()->json(['message' => 'Success', 'response' => 'Success'], 201);
 
     }
 }
