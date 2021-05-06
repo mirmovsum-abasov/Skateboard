@@ -24,7 +24,9 @@ class SellerController extends Controller
                 'email' => $order->email,
                 'phone' => $order->phone,
                 'adress' => $order->addr,
-                'order_date' => $order->created_at
+                'order_date' => $order->created_at,
+                'delivery_date' => $order->delivery_date,
+                'preparation_date' => $order->preparation_date
             ];
         }
         return response()->json($json, 201);
