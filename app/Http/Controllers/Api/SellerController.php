@@ -27,7 +27,7 @@ class SellerController extends Controller
                 'order_date' => $order->created_at
             ];
         }
-        return $json;
+        return response()->json($json, 201);
     }
 
     public function update(Request $request, $id)

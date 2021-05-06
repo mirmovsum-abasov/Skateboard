@@ -21,6 +21,6 @@ class ProductController extends Controller
                 'type' => $product->type->id
             ];
         }
-        return response()->json($json);
+        return response()->json($json, 201);
     }
 }
