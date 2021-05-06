@@ -14,7 +14,7 @@ class SellerController extends Controller
         $orders = Order::with('product')->orderBy('id', 'desc')->paginate(15);
         $json   = [];
         foreach ($orders as $order) {
-            $json []= [
+            $json [] = [
                 'id' => $order->id,
                 'product_id' => $order->product->id,
                 'product_name' => $order->product->name,
@@ -37,11 +37,10 @@ class SellerController extends Controller
             'preparation_date' => 'required|date_format:Y-m-d H:i:s'
         ]);
         if ($validator->fails()) {
-            $response['response'] = $validator->messages();
             return response()->json(['message' => 'error', 'response' => $validator->messages()], 304);
         }
 
-        $order                = Order::find($id);
+        $order = Order::find($id);
         $order->update([
             'delivery_date' => $request->delivery_date,
             'preparation_date' => $request->preparation_date
