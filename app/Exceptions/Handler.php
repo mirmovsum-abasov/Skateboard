@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -30,7 +29,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param \Throwable $exception
+     * @param  \Throwable  $exception
      * @return void
      *
      * @throws \Throwable
@@ -43,49 +42,14 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Throwable $exception
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
-        switch (class_basename($exception)) {
-            case 'TokenMismatchException':
-                return response()->json(['error' => 66, 'errors' => ['forms' => 'Your request was denied. Please try again or reload your page']], 403);
-                break;
-            case 'ThrottleRequestsException':
-                return response()->json(['errors' => ['forms' => 'You have been rate limited, please try again shortly']], 429);
-                break;
-            case 'MethodNotAllowedHttpException':
-                if ($request->expectsJson()) {
-                    return response()->json(['errors' => ['forms' => 'Method Not Allowed']], 405);
-                }
-                return redirect()->route('dashboard');
-                break;
-            case 'NotFoundHttpException':
-                if ($request->expectsJson()) {
-                    return response()->json(['errors' => ['forms' => 'We could not locate the data you requested, it may have been lost forever']], 404);
-                }
-                return parent::render($request, $exception);
-                break;
-            case 'MaintenanceModeException':
-                if ($request->expectsJson()) {
-                    return response()->json(['errors' => ['forms' => 'The site is currently down for maintenance, please check back with us soon']], 503);
-                }
-                return parent::render($request, $exception);
-                break;
-            case 'ValidationException':
-                return parent::render($request, $exception);
-                break;
-        }
-        if (app()->isProduction()) {
-            if ($request->expectsJson()) {
-                return response()->json('Server Error', 500);
-            }
-            return response()->view('errors.500', [], 500);
-        }
         return parent::render($request, $exception);
     }
 }
