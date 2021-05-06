@@ -34,7 +34,7 @@ GET: 127.0.0.1:8000/api/product
 POST: 127.0.0.1:8000/api/order
 {
     "product_id": 1,
-    "color_id": 1,
+    "color_id": color_id colors cədvəlindən daxil edin,
     "amount": 4,
     "email": null,
     "phone": "+994997212120",
