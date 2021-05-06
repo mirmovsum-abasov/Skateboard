@@ -16,6 +16,7 @@ login : test@test.com
 
 password : 1234
 </p>
+<b><u>BÜTÜN ƏMƏLİYYATLAR BİR İSTİFADƏÇİ ÜZƏRİNDƏN OLACAQ</u></b>
 <hr>
 
 ```yaml
