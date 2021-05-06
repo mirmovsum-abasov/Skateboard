@@ -10,7 +10,7 @@ ENV faylından bazanı quraşdırdıqdan sonra atılacaq addımlar:
 </ul>
 <hr>
 <p>
-<b>Test üçün yaradılmış 2 istifadəçidən istifadə edə bilərsiniz.</b>
+<b>Test üçün yaradılmış istifadəçidən istifadə edə bilərsiniz.</b>
 
 login : test@test.com
 
